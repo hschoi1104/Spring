@@ -2,7 +2,8 @@ package com.hschoi1104.lab05.controller;
 
 import com.hschoi1104.lab05.dao.BoardDAO;
 import com.hschoi1104.lab05.dto.BoardDTO;
-import org.mybatis.spring.annotation.MapperScan;
+
+import com.hschoi1104.lab05.dto.ListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @EnableAutoConfiguration
-@MapperScan(basePackages = "com.hschoi1104.lab05.dao")
 
 public class BoardController {
 
@@ -76,5 +78,12 @@ public class BoardController {
         boardDAO.editBoard(board);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/board",method=RequestMethod.GET)
+    public ResponseEntity<List> getBoardList(ListDTO param) throws Exception{
+        List<BoardDTO> board = boardDAO.getBoardList(param);
+
+        return new ResponseEntity<>(board,HttpStatus.OK);
     }
 }

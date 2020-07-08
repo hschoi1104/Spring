@@ -40,4 +40,23 @@
         WHERE `seq` = #{seq}
         AND `deleted`='N'
     </update>
+    <select id="getBoardListNext" resultType="com.hschoi1104.lab05.dto.BoardDTO">
+        SELECT `seq`, `title`,`contents`,`author`,`reads`
+        FROM lab04
+        WHERE 1 = 1
+        AND `deleted`='N'
+        <if test = "lastSeq &gt; 0">
+            AND `seq` &lt; #{lastSeq}
+        </if>
+        ORDER BY `seq` DESC
+        LIMIT 0, #{size}
+    </select>
+    <select id="getBoardListPage" resultType="com.hschoi1104.lab05.dto.BoardDTO">
+        SELECT `seq`, `title`, `contents`, `author`,`reads`
+        FROM lab04
+        WHERE 1=1
+        AND `deleted`='N'
+        ORDER BY `seq` DESC
+        LIMIT #{skip},#{size}
+    </select>
 </mapper>
