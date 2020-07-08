@@ -34,4 +34,10 @@
         </if>
         WHERE `seq` = #{seq}
     </update>
+    <update id = "addBoardReadCount" parameterType="com.hschoi1104.lab05.dto.BoardDTO">
+        UPDATE lab04
+        SET `reads` = `reads`+1
+        WHERE `seq` = #{seq}
+        AND `deleted`='N'
+    </update>
 </mapper>

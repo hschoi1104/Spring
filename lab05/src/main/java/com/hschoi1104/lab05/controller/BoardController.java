@@ -36,7 +36,7 @@ public class BoardController {
         BoardDTO param = new BoardDTO();
         param.setSeq(seq);
 
-        /* TODO: 조회수 증가 */
+        boardDAO.addBoardReadCount(param);
 
         BoardDTO board = boardDAO.getBoard(param);
 
