@@ -4,27 +4,28 @@
 <mapper namespace="com.hschoi1104.lab04.dao.BoardDAO">
 
     <insert id="newBoard" parameterType="com.hschoi1104.lab04.dto.BoardDTO" useGeneratedKeys="true" keyProperty="seq">
-            parameterType="com.hschoi1104.lab04.dto.BoardDTO"
-            useGeneratedKeys="true"
-            keyProperty="seq">
+        parameterType="com.hschoi1104.lab04.dto.BoardDTO"
+        useGeneratedKeys="true"
+        keyProperty="seq">
         INSERT INTO lab04(`title`, `contents`, `author`, `password`)
         VALUES (#{title}, #{contents}, #{author}, #{password})
     </insert>
 
-    <select id="getBoard" parameterType="com.hschoi1104.lab04.dto.BoardDTO" resultType="com.hschoi1104.lab04.dto.BoardDTO">
+    <select id="getBoard" parameterType="com.hschoi1104.lab04.dto.BoardDTO"
+            resultType="com.hschoi1104.lab04.dto.BoardDTO">
         SELECT `seq`, `title`, `contents`, `author`, `reads`
-          FROM lab04
-         WHERE `seq` = #{seq}
-         <if test="password != null">
-             AND `password` = #{password}
-         </if>
-           AND `deleted` = 'N'
+        FROM lab04
+        WHERE `seq` = #{seq}
+        <if test="password != null">
+            AND `password` = #{password}
+        </if>
+        AND `deleted` = 'N'
     </select>
     <update id="editBoard" parameterType="com.hschoi1104.lab04.dto.BoardDTO">
         UPDATE lab04
         SET `title` = #{title}
-        ,   `contents` = #{contents}
-        ,   `author` = #{author}
+        , `contents` = #{contents}
+        , `author` = #{author}
         WHERE `seq` = #{seq}
     </update>
 </mapper>

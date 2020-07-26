@@ -12,24 +12,28 @@ import java.util.List;
 public class BoardDAO {
     @Autowired
     protected SqlSessionTemplate sqlSession;
-    public int newBoard(BoardDTO param) throws Exception{
-        return sqlSession.insert("newBoard",param);
+
+    public int newBoard(BoardDTO param) throws Exception {
+        return sqlSession.insert("newBoard", param);
     }
-    public BoardDTO getBoard(BoardDTO param) throws Exception{
-        return sqlSession.selectOne("getBoard",param);
+
+    public BoardDTO getBoard(BoardDTO param) throws Exception {
+        return sqlSession.selectOne("getBoard", param);
     }
-    public int editBoard(BoardDTO param) throws Exception{
-        return sqlSession.update("addBoardReadCount",param);
+
+    public int editBoard(BoardDTO param) throws Exception {
+        return sqlSession.update("addBoardReadCount", param);
     }
-    public int addBoardReadCount(BoardDTO param) throws Exception{
-        return sqlSession.update("addBoardReadCount",param);
+
+    public int addBoardReadCount(BoardDTO param) throws Exception {
+        return sqlSession.update("addBoardReadCount", param);
     }
-    public List<BoardDTO> getBoardList(ListDTO param) throws Exception{
-        if(param.getLastSeq()>0){
-            return sqlSession.selectList("getBoardListNext",param);
-        }
-        else{
-            return sqlSession.selectList("getBoardListPage",param);
+
+    public List<BoardDTO> getBoardList(ListDTO param) throws Exception {
+        if (param.getLastSeq() > 0) {
+            return sqlSession.selectList("getBoardListNext", param);
+        } else {
+            return sqlSession.selectList("getBoardListPage", param);
         }
     }
 }

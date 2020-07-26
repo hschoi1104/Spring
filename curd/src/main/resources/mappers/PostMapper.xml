@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hschoi1104.curd.dao.PostDAO">
+    <insert id="newPost"
+            parameterType="com.hschoi1104.curd.dto.PostDTO"
+            useGeneratedKeys="true"
+            keyProperty="seq">
+        INSERT INTO post(`title`, `content`, `author`);
+        VALUES (#{title}, #{content}, #{author})
+    </insert>
+</mapper>

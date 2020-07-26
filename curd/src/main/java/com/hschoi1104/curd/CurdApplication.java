@@ -1,4 +1,4 @@
-package com.hschoi1104.lab05;
+package com.hschoi1104.curd;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -11,14 +11,14 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-public class Lab05Application {
+public class CurdApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Lab05Application.class, args);
+        SpringApplication.run(CurdApplication.class, args);
     }
 
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
 

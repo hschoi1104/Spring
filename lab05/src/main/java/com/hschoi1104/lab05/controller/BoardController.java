@@ -23,14 +23,14 @@ public class BoardController {
     @Autowired
     private BoardDAO boardDAO;
 
-    @RequestMapping(value="/board",method = RequestMethod.POST)
-    public ResponseEntity<BoardDTO> postBoard(BoardDTO board) throws Exception{
-        if((board.getAuthor() == null)||(board.getContents()==null)||(board.getPassword()==null)||(board.getTitle()==null)){
+    @RequestMapping(value = "/board", method = RequestMethod.POST)
+    public ResponseEntity<BoardDTO> postBoard(BoardDTO board) throws Exception {
+        if ((board.getAuthor() == null) || (board.getContents() == null) || (board.getPassword() == null) || (board.getTitle() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         boardDAO.newBoard(board);
-        return new ResponseEntity<>(board,HttpStatus.OK);
+        return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/board/{seq}", method = RequestMethod.GET)
@@ -47,14 +47,14 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/board/{seq}", method = RequestMethod.PUT)
-    public ResponseEntity<BoardDTO> putBoard(@PathVariable("seq") final int seq,BoardDTO param) throws Exception{
-        if((param.getAuthor() == null)||(param.getContents()==null)||(param.getPassword()==null)||(param.getTitle()==null)){
+    public ResponseEntity<BoardDTO> putBoard(@PathVariable("seq") final int seq, BoardDTO param) throws Exception {
+        if ((param.getAuthor() == null) || (param.getContents() == null) || (param.getPassword() == null) || (param.getTitle() == null)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         param.setSeq(seq);
         BoardDTO board = boardDAO.getBoard(param);
-        if(board == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (board == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         board.setTitle(param.getTitle());
         board.setContents(param.getContents());
@@ -64,15 +64,15 @@ public class BoardController {
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/board/{seq}",method = RequestMethod.DELETE)
-    public ResponseEntity<BoardDTO> deletedBoard(@PathVariable("seq") final int seq, BoardDTO param) throws Exception{
-        if(param.getPassword()==null){
+    @RequestMapping(value = "/board/{seq}", method = RequestMethod.DELETE)
+    public ResponseEntity<BoardDTO> deletedBoard(@PathVariable("seq") final int seq, BoardDTO param) throws Exception {
+        if (param.getPassword() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         param.setSeq(seq);
         BoardDTO board = boardDAO.getBoard(param);
-        if(board == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (board == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         board.setDeleted("Y");
         boardDAO.editBoard(board);
@@ -80,10 +80,10 @@ public class BoardController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value="/board",method=RequestMethod.GET)
-    public ResponseEntity<List> getBoardList(ListDTO param) throws Exception{
+    @RequestMapping(value = "/board", method = RequestMethod.GET)
+    public ResponseEntity<List> getBoardList(ListDTO param) throws Exception {
         List<BoardDTO> board = boardDAO.getBoardList(param);
 
-        return new ResponseEntity<>(board,HttpStatus.OK);
+        return new ResponseEntity<>(board, HttpStatus.OK);
     }
 }

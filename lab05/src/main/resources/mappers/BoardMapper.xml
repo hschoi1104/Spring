@@ -34,7 +34,7 @@
         </if>
         WHERE `seq` = #{seq}
     </update>
-    <update id = "addBoardReadCount" parameterType="com.hschoi1104.lab05.dto.BoardDTO">
+    <update id="addBoardReadCount" parameterType="com.hschoi1104.lab05.dto.BoardDTO">
         UPDATE lab04
         SET `reads` = `reads`+1
         WHERE `seq` = #{seq}
@@ -45,7 +45,7 @@
         FROM lab04
         WHERE 1 = 1
         AND `deleted`='N'
-        <if test = "lastSeq &gt; 0">
+        <if test="lastSeq &gt; 0">
             AND `seq` &lt; #{lastSeq}
         </if>
         ORDER BY `seq` DESC

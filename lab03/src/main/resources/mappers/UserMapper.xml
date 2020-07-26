@@ -3,7 +3,8 @@
 
 <mapper namespace="com.hschoi1104.lab03.dao.UserDAO">
 
-    <select id="selectUsers" parameterType="com.hschoi1104.lab03.dto.UserDTO" resultType="com.hschoi1104.lab03.dto.UserDTO">
+    <select id="selectUsers" parameterType="com.hschoi1104.lab03.dto.UserDTO"
+            resultType="com.hschoi1104.lab03.dto.UserDTO">
         SELECT `seq`, `name`, `country`
         FROM lab03
         <if test='country != null and country != ""'>

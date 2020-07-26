@@ -1,22 +1,21 @@
-package com.hschoi1104.lab04.dto;
-
+package com.hschoi1104.curd.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 
-public class BoardDTO {
+public class PostDTO {
     private int seq;
     private String title;
-    private String contents;
+    private String content;
     private String author;
-    private String password;
-    private int reads = 0;
-    private String deleted = "N";
+    private int reads=0;
+    private String deleted ="N";
 }
+
