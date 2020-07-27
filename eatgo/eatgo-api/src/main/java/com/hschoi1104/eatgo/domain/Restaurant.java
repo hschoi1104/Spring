@@ -1,5 +1,8 @@
 package com.hschoi1104.eatgo.domain;
 
+import lombok.Getter;
+
+@Getter
 public class Restaurant {
     private final String name;
     private final String address;
@@ -7,14 +10,6 @@ public class Restaurant {
     public Restaurant(String name, String address) {
         this.name = name;
         this.address = address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public String getInformation() {
